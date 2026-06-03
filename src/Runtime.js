@@ -3,13 +3,22 @@ function se(){mb();var P=Ya.Symbol.iterator;P||(P=Ya.Symbol.iterator=Ya.Symbol("
 function ve(P,ra){se();P instanceof String&&(P+="");var A=0,V={next:function(){if(A<P.length){var Y=A++;return{value:ra(Y,P[Y]),done:!1}}V.next=function(){return{done:!0,value:void 0}};return V.next()}};V[Symbol.iterator]=function(){return V};return V}function we(P,ra){if(ra){for(var A=Ya,V=P.split("."),Y=0;Y<V.length-1;Y++){var N=V[Y];N in A||(A[N]={});A=A[N]}V=V[V.length-1];Y=A[V];N=ra(Y);N!=Y&&null!=N&&Aa(A,V,{configurable:!0,writable:!0,value:N})}}
 we("Array.prototype.values",function(P){return P?P:function(){return ve(this,function(P,A){return A})}});we("Array.prototype.fill",function(P){return P?P:function(P,A,V){var Y=this.length||0;0>A&&(A=Math.max(0,Y+A));if(null==V||V>Y)V=Y;V=Number(V);0>V&&(V=Math.max(0,Y+V));for(A=Number(A||0);A<V;A++)this[A]=P;return this}});
 // --- User patch: Clickteam object mover -------------------------------------
-window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || false;
+// Set this to true, run the game, open DevTools Console, and look for the
+// two light button object names + current coordinates. Then set it back false.
+window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || true;
 
-window.CTF_MOVE_OBJECTS = [
-{ name: "left light", occurrence: 1, x: 200, y: 500 },
-{ name: "right light", occurrence: 1, x: 1300, y: 500 }
+// Edit these entries after you know the object name and desired position.
+// occurrence: 1 and 2 are useful when both buttons share the same object name.
+// Example:
+// window.CTF_MOVE_OBJECTS = [
+//   { name: "Light", occurrence: 1, x: 80,  y: 405 },
+//   { name: "Light", occurrence: 2, x: 560, y: 405 }
+// ];
+window.CTF_MOVE_OBJECTS = window.CTF_MOVE_OBJECTS || [
+  // Change these x/y values to move the buttons. These are matched by the slots you found in DevTools.
+  { name: "left light", slot: 12, type: 2, x: 147, y: 429 },
+  { name: "right light", slot: 13, type: 2, x: 1444, y: 427 }
 ];
-window.CTF_MOVE_OBJECTS = window.CTF_MOVE_OBJECTS || [];
 // ---------------------------------------------------------------------------
 window.Runtime=function(P,ra){function A(a,b){this.files={};this.root="";a&&this.load(a,b)}function V(a,b,c){this.x=a;this.y=b;this.text=c}function Y(){this.md="";this.offset=this.P=0;this.ld=!1}function N(){this.zd=[]}function ba(a,b,c,d){this.left=a?a:0;this.top=b?b:0;this.right=c?c:0;this.bottom=d?d:0}function sa(){this.y=this.x=0}function Za(){this.fc=12;this.He=400;this.Ge=0;this.Fe="Arial";this.Pi=!1}function ma(a,b){this.app=a;this.oa=b;this.Ya=new N;this.fk=null}function ja(a,b,c){this.app=
 a;this.width=b;this.height=c;this.canvas=document.createElement("canvas");this.canvas.width=b;this.canvas.height=c;this.Qd=this.canvas.getContext("2d")}function Fa(){this.LI=!!window.opr&&!!opr.vP||!!window.opera||0<=navigator.userAgent.indexOf(" OPR/");this.KI="undefined"!==typeof InstallTrigger;this.OI=0<Object.prototype.toString.call(window.HTMLElement).indexOf("Constructor")||"[object SafariRemoteNotification]"===(!window.safari||safari.pushNotification).toString();this.$l=!!document.documentMode;
@@ -289,7 +298,26 @@ b;for(b=0;b<this.yb;b++){for(;null==this.H[a];)a++;a++}this.h.nc.resume();a=this
 this.h.fd;this.Ro=this.gx=this.tb=this.Nb=this.$h=0;var a;for(a=0;a<(this.Jg+31)/32;a++)this.al[a]=0;this.Xk=this.A.eo;this.Yk=this.A.co;this.Km=-m.by;this.Om=-m.cy;this.Im=this.Kd+m.by;this.Mm=this.Ld+m.cy;this.Uk=a=this.$;a-=m.en;0>a&&(a=this.Km);this.Jm=a;this.Vk=a=this.ca;a-=m.fn;0>a&&(a=this.Om);this.Nm=a;a=this.$;a+=this.Xk+m.en;a>this.Kd&&(a=this.Im);this.Hm=a;a=this.ca;a+=this.Yk+m.fn;a>this.Ld&&(a=this.Mm);this.Lm=a;for(a=this.Sf=this.Rm=this.Zw=this.Wk=0;4>a;a++)this.Xc[a]=0,this.ns[a]=
 0,this.ms[a]=255;this.Sk=0;this.i.ou=!1;this.i.Qo=!1;this.ts=0;this.Yh=null;this.NC=!1;this.ax=this.ps=this.os=this.OC=null;for(a=0;a<m.Ip;a++)this.rs[a]=20;this.Pm=0},UH:function(){this.h.nc.VG();if(null!=this.h.Aa&&this.h.rg)return this.cl=this.h.fd,this.$h=0,this.tb;if(null!=this.h.Hf)return this.h.Hf.handle(),0;this.lu||(this.uE(),this.lu=!0);var a=this.h.fd-this.cl,b=this.$h;this.$h=a;this.To=a-=b;this.Rm+=a;this.Nb+=1;this.Bc=this.To*this.A.cB/1E3;this.rs[this.Pm]=a;this.Pm++;this.Pm>=m.Ip&&
 (this.Pm=0);for(a=0;4>a;a++)this.ns[a]=this.Xc[a];this.RI();1==this.h.Ah?this.Xc[0]|=this.h.ma.Vq()&this.dx:2==this.h.Ah&&(this.Xc[0]|=this.h.Vq()&this.dx);if(0!=this.bl)for(this.Yu(),this.Sk=0,this.h.Jc[k.Pe]&&(this.Sk|=16),this.h.Jc[k.un]&&(this.Sk|=32),a=0;a<this.fx;a++)0!=(this.xQ&1)&&(b=this.Xc[a]&207,b|=this.Sk,this.Xc[a]=b);else this.Yu();for(a=0;4>a;a++)if(b=this.Xc[a]&m.PJ[4*this.fx+a],b&=this.ms[a],this.Xc[a]=b,b^=this.ns[a],this.Xw[a]=b,0!=b)if(b&=this.Xc[a],0!=(b&240))this.i.QC=a,b=this.Xw[a],
-0!=(b&240)&&(this.i.Cc=b,this.i.De(-196615)),0!=(b&15)&&(this.i.Cc=b,this.i.De(-196615));else{var c=this.i.gc[this.i.Me[-v.Ay]+4];0!=c&&(this.i.Cc=b,this.i.Se(c,null))}if(0!=this.yb){a=this.yb;b=0;do{for(this.$w=0;null==this.H[b];)b++;c=this.H[b];c.KA=c.br;c.br=null;c.Wn&&(this.PC=b,c.handle());a+=this.$w;b++;a--}while(0!=a)}this.te++;this.i.fH();this.i.wI();this.i.RC&&0==(this.Lc&m.kn)&&this.i.Se(0,null);this.i.vI();this.AH();this.doScroll();this.i.ls=-1;this.Zw++;if(0==this.tb)return this.gx;this.tb!=
+0!=(b&240)&&(this.i.Cc=b,this.i.De(-196615)),0!=(b&15)&&(this.i.Cc=b,this.i.De(-196615));else{var c=this.i.gc[this.i.Me[-v.Ay]+4];0!=c&&(this.i.Cc=b,this.i.Se(c,null))}if(0!=this.yb){a=this.yb;b=0;do{for(this.$w=0;null==this.H[b];)b++;c=this.H[b];c.KA=c.br;c.br=null;c.Wn&&(this.PC=b,c.handle());
+// --- User patch v2: enforce configured object positions every frame.
+// This catches Clickteam events/movement code that may reset an object's x/y after creation.
+if("undefined"!=typeof window)try{
+ var _ctfMoves2=window.CTF_MOVE_OBJECTS||[],_ctfJ,_ctfM2,_ctfName2=c.Hb&&c.Hb.dj?c.Hb.dj:"",_ctfOK2;
+ for(_ctfJ=0;_ctfJ<_ctfMoves2.length;_ctfJ++){
+  _ctfM2=_ctfMoves2[_ctfJ];_ctfOK2=!0;
+  if(null!=_ctfM2.slot)_ctfOK2=_ctfOK2&&c.Vb==_ctfM2.slot;
+  if(null!=_ctfM2.type)_ctfOK2=_ctfOK2&&c.Ga==_ctfM2.type;
+  if(null!=_ctfM2.name)_ctfOK2=_ctfOK2&&(_ctfM2.name.test?_ctfM2.name.test(_ctfName2):0<=String(_ctfName2).toLowerCase().indexOf(String(_ctfM2.name).toLowerCase()));
+  if(_ctfOK2){
+   if(null!=_ctfM2.x){null!=c.B&&null!=c.B.na?c.B.na.mc(_ctfM2.x):c.v=_ctfM2.x;}
+   if(null!=_ctfM2.y){null!=c.B&&null!=c.B.na?c.B.na.bc(_ctfM2.y):c.u=_ctfM2.y;}
+   if(null!=c.b){c.b.L=!0;c.b.Ra=!0;}
+   if(null!=c.B)c.B.R=!0;
+  }
+ }
+}catch(_ctfE2){}
+// ---------------------------------------------------------------------------
+a+=this.$w;b++;a--}while(0!=a)}this.te++;this.i.fH();this.i.wI();this.i.RC&&0==(this.Lc&m.kn)&&this.i.Se(0,null);this.i.vI();this.AH();this.doScroll();this.i.ls=-1;this.Zw++;if(0==this.tb)return this.gx;this.tb!=
 m.Hp&&this.tb!=m.wt&&this.tb!=m.ln&&this.tb!=m.Gp&&this.tb!=m.zF&&this.tb!=m.my||this.i.De(-65539);return this.tb},RI:function(){var a;for(a=0;4>a;a++)this.Xc[a]=0;var b=this.h.aI();for(a=0;4>a;a++){var c;for(c=0;c<k.mn;c++)this.h.Jc[b[a*k.mn+c]]&&(this.Xc[a]|=1<<c)}},Yu:function(){this.pj=this.h.If+this.$-this.h.Wf;this.qj=this.h.Jf+this.ca-this.h.Xf},Lf:function(a){a.B.R=!1;m.Xy=!1;a.B.Wo=0;var b,c;0!=(a.Xe&J.$p)&&(b=this.Kw(a.b.Pw,a.b.Rw,a.b.Qw,a.b.Sw),0!=b&&(c=this.Kw(a.v-a.ia,a.u-a.ja,a.v-a.ia+
 a.K,a.u-a.ja+a.J),0==c&&(b^=c,0!=b&&(a.B.Wo|=Ea.CE,this.i.Cc=b,this.i.qd(a,-720896|a.Ga&65535)))),b=this.Kw(a.v-a.ia,a.u-a.ja,a.v-a.ia+a.K,a.u-a.ja+a.J),0!=(b&a.B.ix)&&(c=a.B.R,0!=(b&m.Yg)?a.B.na.mc(a.v+this.Kd):0!=(b&m.Zg)&&a.B.na.mc(a.v-this.Kd),0!=(b&m.$g)?a.B.na.bc(a.u+this.Ld):0!=(b&m.Xg)&&a.B.na.bc(a.u-this.Ld),a.b.Wc!=R.Nt&&a.b.Wc!=R.Pj&&(a.B.R=c)),b=this.Nk(a.b.Pw,a.b.Rw,a.b.Qw,a.b.Sw),b!=m.WD&&(c=this.Nk(a.v-a.ia,a.u-a.ja,a.v-a.ia+a.K,a.u-a.ja+a.J),b=~b&c,0!=b&&(a.B.Wo|=Ea.DE,this.i.Cc=b,
 this.i.qd(a,-786432|a.Ga&65535))));0!=(a.Xe&J.Zp)&&(a.b.Wc==R.Nt?a.B.na.wJ():this.bk(a,a.b.La,a.b.ab,a.b.vb,a.b.wb,a.v,a.u,0,F.ee)&&this.i.qd(a,-851968|a.Ga&65535));if(0!=(a.Xe&J.tn)&&(b=this.pm(a,a.b.La,a.b.ab,a.b.vb,a.b.wb,a.v,a.u,a.Hb.bj),null!=b))for(c=0;c<b.size();c++){var d=b.get(c);if(0==(d.T&E.ze)){var e=a.Ga,f=a,g=d;f.Ga>g.Ga&&(f=d,g=a,e=f.Ga);this.i.Cc=g.Ye;this.i.sK=g.Vb;this.i.qd(f,-917504|e&65535)}}return m.Xy},pm:function(a,b,c,d,e,f,g,h){var q=null;f-=a.ia;var m=f+a.K;g-=a.ja;var w=
