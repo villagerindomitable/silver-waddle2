@@ -16,7 +16,7 @@ window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || false;
 // ];
 window.CTF_MOVE_OBJECTS = window.CTF_MOVE_OBJECTS || [
   // Change these x/y values to move the buttons. These are matched by the slots you found in DevTools.
-  { name: "left light", slot: 12, type: 2, x: 398, y: 404 },
+  { name: "left light", slot: 12, type: 2, x: 398, y: 304 },
   { name: "right light", slot: 13, type: 2, x: 1207, y: 400 }
 ];
 // ---------------------------------------------------------------------------
