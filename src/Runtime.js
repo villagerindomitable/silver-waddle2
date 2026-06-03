@@ -3,17 +3,12 @@ function se(){mb();var P=Ya.Symbol.iterator;P||(P=Ya.Symbol.iterator=Ya.Symbol("
 function ve(P,ra){se();P instanceof String&&(P+="");var A=0,V={next:function(){if(A<P.length){var Y=A++;return{value:ra(Y,P[Y]),done:!1}}V.next=function(){return{done:!0,value:void 0}};return V.next()}};V[Symbol.iterator]=function(){return V};return V}function we(P,ra){if(ra){for(var A=Ya,V=P.split("."),Y=0;Y<V.length-1;Y++){var N=V[Y];N in A||(A[N]={});A=A[N]}V=V[V.length-1];Y=A[V];N=ra(Y);N!=Y&&null!=N&&Aa(A,V,{configurable:!0,writable:!0,value:N})}}
 we("Array.prototype.values",function(P){return P?P:function(){return ve(this,function(P,A){return A})}});we("Array.prototype.fill",function(P){return P?P:function(P,A,V){var Y=this.length||0;0>A&&(A=Math.max(0,Y+A));if(null==V||V>Y)V=Y;V=Number(V);0>V&&(V=Math.max(0,Y+V));for(A=Number(A||0);A<V;A++)this[A]=P;return this}});
 // --- User patch: Clickteam object mover -------------------------------------
-// Set this to true, run the game, open DevTools Console, and look for the
-// two light button object names + current coordinates. Then set it back false.
-window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || true;
+window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || false;
 
-// Edit these entries after you know the object name and desired position.
-// occurrence: 1 and 2 are useful when both buttons share the same object name.
-// Example:
-// window.CTF_MOVE_OBJECTS = [
-//   { name: "Light", occurrence: 1, x: 80,  y: 405 },
-//   { name: "Light", occurrence: 2, x: 560, y: 405 }
-// ];
+window.CTF_MOVE_OBJECTS = [
+{ name: "left light", occurrence: 1, x: 200, y: 500 },
+{ name: "right light", occurrence: 1, x: 1300, y: 500 }
+];
 window.CTF_MOVE_OBJECTS = window.CTF_MOVE_OBJECTS || [];
 // ---------------------------------------------------------------------------
 window.Runtime=function(P,ra){function A(a,b){this.files={};this.root="";a&&this.load(a,b)}function V(a,b,c){this.x=a;this.y=b;this.text=c}function Y(){this.md="";this.offset=this.P=0;this.ld=!1}function N(){this.zd=[]}function ba(a,b,c,d){this.left=a?a:0;this.top=b?b:0;this.right=c?c:0;this.bottom=d?d:0}function sa(){this.y=this.x=0}function Za(){this.fc=12;this.He=400;this.Ge=0;this.Fe="Arial";this.Pi=!1}function ma(a,b){this.app=a;this.oa=b;this.Ya=new N;this.fk=null}function ja(a,b,c){this.app=
