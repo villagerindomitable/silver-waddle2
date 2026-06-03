@@ -5,7 +5,7 @@ we("Array.prototype.values",function(P){return P?P:function(){return ve(this,fun
 // --- User patch: Clickteam object mover -------------------------------------
 // Set this to true, run the game, open DevTools Console, and look for the
 // two light button object names + current coordinates. Then set it back false.
-window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || true;
+window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || false;
 
 // Edit these entries after you know the object name and desired position.
 // occurrence: 1 and 2 are useful when both buttons share the same object name.
@@ -16,8 +16,8 @@ window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || true;
 // ];
 window.CTF_MOVE_OBJECTS = window.CTF_MOVE_OBJECTS || [
   // Change these x/y values to move the buttons. These are matched by the slots you found in DevTools.
-  { name: "left light", slot: 12, type: 2, x: 147, y: 429 },
-  { name: "right light", slot: 13, type: 2, x: 1444, y: 427 }
+  { name: "left light", slot: 12, type: 2, x: 200, y: 500 },
+  { name: "right light", slot: 13, type: 2, x: 1200, y: 500 }
 ];
 // ---------------------------------------------------------------------------
 window.Runtime=function(P,ra){function A(a,b){this.files={};this.root="";a&&this.load(a,b)}function V(a,b,c){this.x=a;this.y=b;this.text=c}function Y(){this.md="";this.offset=this.P=0;this.ld=!1}function N(){this.zd=[]}function ba(a,b,c,d){this.left=a?a:0;this.top=b?b:0;this.right=c?c:0;this.bottom=d?d:0}function sa(){this.y=this.x=0}function Za(){this.fc=12;this.He=400;this.Ge=0;this.Fe="Arial";this.Pi=!1}function ma(a,b){this.app=a;this.oa=b;this.Ya=new N;this.fk=null}function ja(a,b,c){this.app=
