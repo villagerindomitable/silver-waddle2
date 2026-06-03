@@ -2,6 +2,20 @@ var Aa="function"==typeof Object.defineProperties?Object.defineProperty:function
 function se(){mb();var P=Ya.Symbol.iterator;P||(P=Ya.Symbol.iterator=Ya.Symbol("iterator"));"function"!=typeof Array.prototype[P]&&Aa(Array.prototype,P,{configurable:!0,writable:!0,value:function(){return te(this)}});se=function(){}}function te(P){var ra=0;return ue(function(){return ra<P.length?{done:!1,value:P[ra++]}:{done:!0}})}function ue(P){se();P={next:P};P[Ya.Symbol.iterator]=function(){return this};return P}
 function ve(P,ra){se();P instanceof String&&(P+="");var A=0,V={next:function(){if(A<P.length){var Y=A++;return{value:ra(Y,P[Y]),done:!1}}V.next=function(){return{done:!0,value:void 0}};return V.next()}};V[Symbol.iterator]=function(){return V};return V}function we(P,ra){if(ra){for(var A=Ya,V=P.split("."),Y=0;Y<V.length-1;Y++){var N=V[Y];N in A||(A[N]={});A=A[N]}V=V[V.length-1];Y=A[V];N=ra(Y);N!=Y&&null!=N&&Aa(A,V,{configurable:!0,writable:!0,value:N})}}
 we("Array.prototype.values",function(P){return P?P:function(){return ve(this,function(P,A){return A})}});we("Array.prototype.fill",function(P){return P?P:function(P,A,V){var Y=this.length||0;0>A&&(A=Math.max(0,Y+A));if(null==V||V>Y)V=Y;V=Number(V);0>V&&(V=Math.max(0,Y+V));for(A=Number(A||0);A<V;A++)this[A]=P;return this}});
+// --- User patch: Clickteam object mover -------------------------------------
+// Set this to true, run the game, open DevTools Console, and look for the
+// two light button object names + current coordinates. Then set it back false.
+window.CTF_DUMP_OBJECTS = window.CTF_DUMP_OBJECTS || true;
+
+// Edit these entries after you know the object name and desired position.
+// occurrence: 1 and 2 are useful when both buttons share the same object name.
+// Example:
+// window.CTF_MOVE_OBJECTS = [
+//   { name: "Light", occurrence: 1, x: 80,  y: 405 },
+//   { name: "Light", occurrence: 2, x: 560, y: 405 }
+// ];
+window.CTF_MOVE_OBJECTS = window.CTF_MOVE_OBJECTS || [];
+// ---------------------------------------------------------------------------
 window.Runtime=function(P,ra){function A(a,b){this.files={};this.root="";a&&this.load(a,b)}function V(a,b,c){this.x=a;this.y=b;this.text=c}function Y(){this.md="";this.offset=this.P=0;this.ld=!1}function N(){this.zd=[]}function ba(a,b,c,d){this.left=a?a:0;this.top=b?b:0;this.right=c?c:0;this.bottom=d?d:0}function sa(){this.y=this.x=0}function Za(){this.fc=12;this.He=400;this.Ge=0;this.Fe="Arial";this.Pi=!1}function ma(a,b){this.app=a;this.oa=b;this.Ya=new N;this.fk=null}function ja(a,b,c){this.app=
 a;this.width=b;this.height=c;this.canvas=document.createElement("canvas");this.canvas.width=b;this.canvas.height=c;this.Qd=this.canvas.getContext("2d")}function Fa(){this.LI=!!window.opr&&!!opr.vP||!!window.opera||0<=navigator.userAgent.indexOf(" OPR/");this.KI="undefined"!==typeof InstallTrigger;this.OI=0<Object.prototype.toString.call(window.HTMLElement).indexOf("Constructor")||"[object SafariRemoteNotification]"===(!window.safari||safari.pushNotification).toString();this.$l=!!document.documentMode;
 this.HI=!this.$l&&!!window.StyleMedia;(this.II=(this.QA=!!window.chrome&&(!!window.chrome.webstore||!!window.chrome.runtime))&&-1!=navigator.userAgent.indexOf("Edg"))||this.QA||this.HI||this.$l||this.KI||this.LI||this.OI||this.VC(Fa.sH);this.version=this.WC(navigator.userAgent)||this.WC(navigator.appVersion)||"Unknown version";this.VC(Fa.uH)}function xa(){this.tu=null;this.height=this.width=0;this.pg=null;this.oa=this.color=0;this.XH=null;this.Ir=this.mv=this.GI=this.mA=this.Cd=0;this.su=null;this.Pi=
@@ -248,7 +262,28 @@ this.h.ti.get(a),e==d.name){g=!0;break}0==g?(d=new ze,d.name=e,d.Mf=new N,this.h
 Bv:function(){var a,b,c,d,e,f;if(null!=this.h.ti)for(c=0;c<this.N.length;c++)if(b=this.N[c],a=b.ob,32767!=b.Vc&&0<=a&&(e=this.h.Rc.qk(b.Vc),0!=(e.Oh&v.Iy)))for(f=b.dj+b.Id.toString(),d=0;d<this.h.ti.size();d++)if(e=this.h.ti.get(d),f==e.name){for(d=0;;){a=this.H[a];if(b.Id==v.jh)f=e.Mf.get(d),a.ai=f.text,a.ub=f.ub,a.b.L=!0,a.AP=!0;else if(b.Id==v.rn)f=e.Mf.get(d),a.sa=f.value,a.ub=f.ub,a.Mc=f.Mc,a.zs=f.zs,a.ys=f.ys,a.yP=!0,a.b.L=!0;else{f=e.Mf.get(d);a.M.gl=f.oa;a.M.Li(f.values.length);a.M.rI(f.Ya.length);
 var g;for(g=0;g<f.values.length;g++)a.M.Sa[g]=f.values[g];for(g=0;g<f.Ya.length;g++)a.M.Md[g]=f.Ya[g]}a=a.$b;if(0!=(a&2147483648))break;d++;if(d>=e.Mf.size())break}break}},Lu:function(a,b,c,d,e,f,g,h){for(;;){var q=new Xc,k=null;-1!=a&&(k=this.A.wd.hI(a));var w=this.h.Rc.qk(b),n=w.rc;0==(n.Xi&t.Xp)&&(f|=m.dn);if(this.yb>=this.Jg)break;var p=null,l=new E;switch(w.Je){case 2:p=new jd;break;case 3:p=new nd;break;case 4:p=new od;break;case 5:p=new ld;break;case 6:p=new md;break;case 7:p=new da;break;
 case 8:break;case 9:p=new K;break;default:p=new pd(w.Je,this),null==p.ext&&(p=null)}if(null==p)break;p.prototype=l;p.cJ=k;if(0>h)for(h=0;h<this.Jg&&null!=this.H[h];h++);if(h>=this.Jg)break;this.H[h]=p;this.yb++;p.yI=n.yc;p.ua=n.yg;h>this.PC&&this.$w++;p.Vb=h;this.Oo++;0==this.Oo&&(this.Oo=1);p.fv=this.Oo;p.Ye=b;p.cr=a;p.Ga=w.Je;this.CJ(p);p.c=this;p.Wn=!0;p.O=n;0==(p.ua&t.Fy)&&(p.ua&=~t.Rj,0!=(p.Xe&J.Zp)&&0!=(this.A.Wb&F.ky)&&(p.ua|=t.Rj),0!=(p.Xe&(J.Od|J.$p))&&(p.ua|=t.Rj));a=c;2147483648==a&&(a=
-k.zv);q.YG=a;p.v=a;2147483648==d&&(d=k.Av);q.ZG=d;p.u=d;null!=k&&-1==g&&(g=k.ZA);q.qz=g;p.Wd=g;g=this.A.Wa[g];g.$v++;q.rz=g.$v;q.xq=f;q.pz=e;q.XG=k;p.b=null;0!=(p.ua&(t.Qj|t.kh|t.Sj))&&(p.b=new kd,p.b.Y());p.B=null;0!=(p.ua&t.kh)&&(p.B=new Ea,0==(q.xq&m.hE)&&p.B.Y(0,p,n,q,-1));p.ea=null;0!=(p.ua&t.Qj)&&(p.ea=new Ga,p.ea.Y(p));p.F=null;0!=(p.ua&t.Sj)&&(p.F=new z,p.F.zI(p,n,q));p.M=null;0!=(p.ua&t.$F)&&(p.M=new Ja,p.M.Y(p,n,q));p.Y(n,q);0!=(p.ua&t.Sj)&&p.F.kv(!0);1<=this.Nb&&p.rh();return h}return-1},
+k.zv);q.YG=a;p.v=a;2147483648==d&&(d=k.Av);q.ZG=d;p.u=d;
+// --- User patch: apply object mover before the object finishes initializing.
+if("undefined"!=typeof window)try{
+ var _ctfName=p.Hb&&p.Hb.dj?p.Hb.dj:"";
+ if(window.CTF_DUMP_OBJECTS&&_ctfName)console.log("[CTF object]",{name:_ctfName,x:p.v,y:p.u,slot:p.Vb,type:p.Ga});
+ var _ctfMoves=window.CTF_MOVE_OBJECTS||[],_ctfI,_ctfM,_ctfOk;
+ for(_ctfI=0;_ctfI<_ctfMoves.length;_ctfI++){
+  _ctfM=_ctfMoves[_ctfI];_ctfOk=!0;
+  if(null!=_ctfM.name){
+   _ctfOk=_ctfM.name.test?_ctfM.name.test(_ctfName):0<=String(_ctfName).toLowerCase().indexOf(String(_ctfM.name).toLowerCase());
+  }
+  if(_ctfOk&&(null==_ctfM.oldX||p.v==_ctfM.oldX)&&(null==_ctfM.oldY||p.u==_ctfM.oldY)){
+   _ctfM._seen=(_ctfM._seen||0)+1;
+   if(null==_ctfM.occurrence||_ctfM.occurrence==_ctfM._seen){
+    if(null!=_ctfM.x)q.YG=p.v=_ctfM.x;
+    if(null!=_ctfM.y)q.ZG=p.u=_ctfM.y;
+   }
+  }
+ }
+}catch(_ctfE){}
+// ---------------------------------------------------------------------------
+null!=k&&-1==g&&(g=k.ZA);q.qz=g;p.Wd=g;g=this.A.Wa[g];g.$v++;q.rz=g.$v;q.xq=f;q.pz=e;q.XG=k;p.b=null;0!=(p.ua&(t.Qj|t.kh|t.Sj))&&(p.b=new kd,p.b.Y());p.B=null;0!=(p.ua&t.kh)&&(p.B=new Ea,0==(q.xq&m.hE)&&p.B.Y(0,p,n,q,-1));p.ea=null;0!=(p.ua&t.Qj)&&(p.ea=new Ga,p.ea.Y(p));p.F=null;0!=(p.ua&t.Sj)&&(p.F=new z,p.F.zI(p,n,q));p.M=null;0!=(p.ua&t.$F)&&(p.M=new Ja,p.M.Y(p,n,q));p.Y(n,q);0!=(p.ua&t.Sj)&&p.F.kv(!0);1<=this.Nb&&p.rh();return h}return-1},
 Oq:function(a,b){var c=this.H[a];if(null!=c){if(1!=b||0!=c.fv)this.VI(c),null!=c.B&&c.B.Ib(b),null!=c.M&&c.M.Ib(b),null!=c.F&&c.F.Ib(b),null!=c.b&&c.b.Ib(b),c.Ib(b),this.BJ(c);this.H[a]=null;this.yb--}},ig:function(a){this.al[Math.floor(a/32)]|=1<<(a&31);this.Ro++},AH:function(){if(0!=this.Ro)for(var a=0,b,c;a<this.Jg;){b=this.al[a/32];if(0!=b){for(c=this.al[a/32]=0;0!=b&&32>c;c++){if(0!=(b&1)){var d=this.H[a+c];null!=d&&1==d.Hb.Bg&&this.i.qd(d,d.Ga|-2162688);this.Oq(a+c,!1);this.Ro--}b>>=1}if(0==
 this.Ro)break}a+=32}},VI:function(a){var b=0,c,d;if(0!=(a.T&E.fy))for(c=0;c<this.yb;c++){for(;null==this.H[b];)b++;d=this.H[b];b++;null!=d.B&&d.b.Wc==R.JF&&(d=d.B.na,d.tl==a&&1==d.Mp&&d.tD())}},rh:function(){var a,b,c;for(c=a=0;a<this.yb;a++){for(;null==this.H[c];)c++;c++}for(c=a=0;a<this.yb;a++){for(;null==this.H[c];)c++;b=this.H[c];c++;b.rh()}},CJ:function(a){var b=a.Ye,c;for(c=0;c<this.ve&&this.N[c].Vc!=b;c++);b=this.N[c];0!=(b.ob&2147483648)?(b.ob=a.Vb,a.og=c|2147483648,a.$b=2147483648):(c=this.H[b.ob],
 a.og=c.og,c.og=a.Vb,a.$b=c.Vb,b.ob=a.Vb);a.gv=b.nw;a.Hb=b;a.Xe=b.Hd;-1==a.cr?a.cr=b.Do:-1==b.Do&&(b.Do=a.cr);b.Bg+=1},BJ:function(a){var b=a.Hb;--b.Bg;var c;0==(a.og&2147483648)?(c=this.H[a.og],0==(a.$b&2147483648)?(b=this.H[a.$b],null!=c&&(c.$b=a.$b),null!=b&&(b.og=a.og)):null!=c&&(c.$b=2147483648)):0==(a.$b&2147483648)?(c=this.H[a.$b],null!=c&&(c.og=a.og,b.ob=c.Vb)):b.ob=2147483648},uE:function(){var a=this.ey();if(null!=a){var b=0,c;for(c=0;c<this.yb;b++,c++){for(;null==this.H[b];)b++;var d=this.H[b];
